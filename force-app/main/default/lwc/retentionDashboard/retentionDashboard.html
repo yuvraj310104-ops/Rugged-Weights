@@ -1,0 +1,31 @@
+
+<template>
+    <lightning-card
+        title="Upcoming Membership Renewals"
+        icon-name="standard:contact"
+    >
+        <div class="slds-p-around_medium">
+            <template lwc:if={error}>
+                <p class="slds-text-color_error">
+                    Unable to load memberships. Check your access
+                    permissions and try again.
+                </p>
+            </template>
+
+            <template lwc:elseif={hasMemberships}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={memberships}
+                    columns={columns}
+                    hide-checkbox-column
+                >
+                </lightning-datatable>
+            </template>
+
+            <template lwc:else>
+                <p>No eligible memberships are expiring in the next
+                    seven days.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>
